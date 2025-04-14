@@ -4,12 +4,9 @@ export const GlobalStyles = StyleSheet.create({
     Title: {
         fontSize: 24,
         fontWeight: 'bold',
-        padding: 16,
+        paddingTop: 40,
+        paddingHorizontal: 20,
         backgroundColor: 'white',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
         zIndex: 2,
       },
 });
