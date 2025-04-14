@@ -12,7 +12,7 @@ export default function HomeScreen() {
       <ScrollView contentContainerStyle={styles.Feed}>
         <ThemedView style={styles.PostGrid}>
           {posts.map(post => (
-            <Post key={post.id} imageUrl={post.imageUrl} />
+            <Post key={post.postId} imageUrl={post.imageUrl} postId={post.postId.toString()} />
           ))}
         </ThemedView>
       </ScrollView>
