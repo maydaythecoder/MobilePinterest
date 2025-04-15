@@ -1,6 +1,9 @@
 import { ThemedView } from "./Default/ThemedView";
 import { Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
+import { ThemedText } from "./Default/ThemedText";
+import { Dimensions } from 'react-native';
+import { useState } from 'react';
 
 interface PostProps {
     imageUrl: string;
@@ -9,32 +12,36 @@ interface PostProps {
 
 export const Post = ({ imageUrl, postId }: PostProps) => {
     const router = useRouter();
-
+    const [Ratio, setRatio] = useState(1/2);
+    Image.getSize(imageUrl, (width, height) => {
+        setRatio(width / height);
+    });
     return (
       <ThemedView style={styles.Post}>
         <TouchableOpacity onPress={() => router.push(`/post/${postId}`)}>
         <Image 
-          style={styles.PostImage} 
+          style={[styles.PostImage, { aspectRatio: Ratio }]} 
           source={{ uri: imageUrl }}
         />
         </TouchableOpacity>
+        <ThemedText style={styles.PostText}>Post {postId}</ThemedText>
       </ThemedView>
     );
   };
 
   const styles = StyleSheet.create({
     Post: {
-        elevation: 1,
-        zIndex: 1,
-        borderRadius: 16,
-        overflow: 'hidden',
-        backgroundColor: 'red',
-        width: 180, // Fixed width of 150
-        aspectRatio: 9/16, // Makes height match width dynamically
+      width: '48%',
+      marginBottom: 20, 
+      backgroundColor: 'red',
       },
       PostImage: {
         width: '100%',
-        height: '100%',
-        resizeMode: 'contain' // This will maintain aspect ratio within the fixed container
+        borderRadius: 16,
+      },
+      PostText: {
+        fontWeight: 'bold',
+        marginBottom: 10,
+        paddingBottom: 10,
       }
   });
