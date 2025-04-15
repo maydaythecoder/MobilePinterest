@@ -2,8 +2,7 @@ import { ThemedView } from "./Default/ThemedView";
 import { Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import { ThemedText } from "./Default/ThemedText";
-import { Dimensions } from 'react-native';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface PostProps {
     imageUrl: string;
@@ -13,9 +12,12 @@ interface PostProps {
 export const Post = ({ imageUrl, postId }: PostProps) => {
     const router = useRouter();
     const [Ratio, setRatio] = useState(1/2);
-    Image.getSize(imageUrl, (width, height) => {
-        setRatio(width / height);
-    });
+    useEffect(() => {
+        Image.getSize(imageUrl, (width, height) => {
+            setRatio(width / height);
+        });
+    }, [imageUrl]);
+
     return (
       <ThemedView style={styles.Post}>
         <TouchableOpacity onPress={() => router.push(`/post/${postId}`)}>
@@ -31,9 +33,7 @@ export const Post = ({ imageUrl, postId }: PostProps) => {
 
   const styles = StyleSheet.create({
     Post: {
-      width: '48%',
-      marginBottom: 20, 
-      backgroundColor: 'red',
+      width: '100%',
       },
       PostImage: {
         width: '100%',
@@ -41,7 +41,5 @@ export const Post = ({ imageUrl, postId }: PostProps) => {
       },
       PostText: {
         fontWeight: 'bold',
-        marginBottom: 10,
-        paddingBottom: 10,
       }
   });
