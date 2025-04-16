@@ -1,8 +1,6 @@
 import { StyleSheet, ScrollView, TouchableOpacity } from "react-native";
-import { ThemedView } from "@/components/Default/ThemedView";
 import { ThemedText } from "@/components/Default/ThemedText";
-import Search from "@/components/Explore/Search";
-import { Image, Dimensions } from "react-native";
+import { Image } from "react-native";
 import { categories } from "@/constants/Categories";
 
 const Categories = () => {

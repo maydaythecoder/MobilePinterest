@@ -1,7 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { ThemedText } from '@/components/Default/ThemedText';
 import { ThemedView } from '@/components/Default/ThemedView';
-import GlobalStyles from '@/app/GlobalStyles';
 import { Feed } from '@/components/Feed';
 
 export default function HomeScreen() {

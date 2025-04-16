@@ -1,36 +1,46 @@
 import { StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { ThemedView } from "@/components/Default/ThemedView";
 import { ThemedText } from "@/components/Default/ThemedText";
-import Search from "@/components/Explore/Search";
 import { Image, Dimensions } from "react-native";
 import { trendingPins } from "@/constants/Trending";
 
 const Trending = () => {
   const windowWidth = Dimensions.get("window").width;
-  const itemWidth = (windowWidth - 45) / 2;
+  const columnWidth = (windowWidth - 45) / 2;
+
+  // Split pins into two columns for masonry layout
+  const leftColumnPins = trendingPins.filter((_, i) => i % 2 === 0);
+  const rightColumnPins = trendingPins.filter((_, i) => i % 2 === 1);
 
   return (
     <ScrollView style={styles.trendingContainer}>
       <ThemedText style={styles.sectionTitle}>Popular on Pinterest</ThemedText>
-      <ThemedView style={styles.trendingGrid}>
-        {trendingPins.map((pin, index) => (
-          <TouchableOpacity
-            key={index}
-            style={[styles.trendingItem, { width: itemWidth }]}
-          >
-            <Image
-              style={[
-                styles.trendingImage,
-                {
-                  width: itemWidth,
-                  height: index % 2 === 0 ? itemWidth * 1.8 : itemWidth * 1.4,
-                },
-              ]}
-              source={{ uri: pin.image }}
-            />
-            <ThemedText style={styles.trendingText}>{pin.title}</ThemedText>
-          </TouchableOpacity>
-        ))}
+      <ThemedView style={styles.masonryContainer}>
+        {/* Left Column */}
+        <ThemedView style={[styles.masonryColumn, { width: columnWidth }]}>
+          {leftColumnPins.map((pin, index) => (
+            <TouchableOpacity key={index} style={styles.trendingItem}>
+              <Image
+                style={[styles.trendingImage, { width: columnWidth, height: columnWidth * 1.8 }]}
+                source={{ uri: pin.image }}
+              />
+              <ThemedText style={styles.trendingText}>{pin.title}</ThemedText>
+            </TouchableOpacity>
+          ))}
+        </ThemedView>
+
+        {/* Right Column */}
+        <ThemedView style={[styles.masonryColumn, { width: columnWidth }]}>
+          {rightColumnPins.map((pin, index) => (
+            <TouchableOpacity key={index} style={styles.trendingItem}>
+              <Image
+                style={[styles.trendingImage, { width: columnWidth, height: columnWidth * 1.4 }]}
+                source={{ uri: pin.image }}
+              />
+              <ThemedText style={styles.trendingText}>{pin.title}</ThemedText>
+            </TouchableOpacity>
+          ))}
+        </ThemedView>
       </ThemedView>
     </ScrollView>
   );
@@ -49,11 +59,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
     color: "#111",
   },
-  trendingGrid: {
+  masonryContainer: {
     flexDirection: "row",
-    flexWrap: "wrap",
     justifyContent: "space-between",
-    paddingBottom: 20,
+  },
+  masonryColumn: {
+    flexDirection: "column",
   },
   trendingItem: {
     marginBottom: 20,

@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderBottomWidth: 1,
     borderBottomColor: "#e1e1e1",
+    justifyContent: "center", // Added to center the tabs
   },
   tab: {
     paddingVertical: 12,
@@ -94,6 +95,7 @@ const styles = StyleSheet.create({
   tabText: {
     fontSize: 16,
     color: "gray",
+    textAlign: "center", // Added to center the text
   },
   activeTabText: {
     color: "#000",
