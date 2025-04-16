@@ -32,13 +32,14 @@ const styles = StyleSheet.create({
       flexDirection: 'column',
       height: '100%',
       width: '100%',
+      paddingBottom: 25,
     },
     ScrollView: {
       flexGrow: 1,
     },
     MasonryContainer: {
       flexDirection: 'row',
-      paddingTop: 70,
+      paddingTop: 20,
       paddingHorizontal: 8,
     },
     MasonryColumn: {
