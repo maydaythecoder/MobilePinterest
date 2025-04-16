@@ -1,15 +1,18 @@
-import React from 'react'
-import { ThemedView, ThemedText } from '@/components/Default/index'
-import { StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native'
-import { IconSymbol } from '@/components/ui/IconSymbol'
-import { useRouter } from 'expo-router'
+import React from "react";
+import { ThemedView, ThemedText } from "@/components/Default/index";
+import { StyleSheet, TouchableOpacity, Image, ScrollView } from "react-native";
+import { IconSymbol } from "@/components/ui/IconSymbol";
+import { useRouter } from "expo-router";
 
 const create = () => {
-  const router = useRouter()
+  const router = useRouter();
   return (
     <ThemedView style={styles.container}>
       <ThemedView style={styles.header}>
-        <TouchableOpacity style={styles.closeButton} onPress={() => router.back()}>
+        <TouchableOpacity
+          style={styles.closeButton}
+          onPress={() => router.back()}
+        >
           <IconSymbol name="xmark" size={24} color="gray" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.saveButton}>
@@ -34,13 +37,15 @@ const create = () => {
 
           <ThemedText style={styles.label}>Description</ThemedText>
           <ThemedView style={styles.inputBox}>
-            <ThemedText style={styles.placeholder}>Tell everyone what your Pin is about</ThemedText>
+            <ThemedText style={styles.placeholder}>
+              Tell everyone what your Pin is about
+            </ThemedText>
           </ThemedView>
         </ThemedView>
       </ScrollView>
     </ThemedView>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -48,26 +53,26 @@ const styles = StyleSheet.create({
     paddingTop: 60,
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingHorizontal: 16,
     paddingBottom: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#e0e0e0',
+    borderBottomColor: "#e0e0e0",
   },
   closeButton: {
     padding: 8,
   },
   saveButton: {
-    backgroundColor: '#E60023',
+    backgroundColor: "#E60023",
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 20,
   },
   saveText: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: "white",
+    fontWeight: "bold",
   },
   content: {
     flex: 1,
@@ -75,20 +80,20 @@ const styles = StyleSheet.create({
   },
   uploadContainer: {
     height: 300,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: "#f0f0f0",
     borderRadius: 16,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginBottom: 24,
   },
   uploadText: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginTop: 16,
   },
   recommendationText: {
     fontSize: 12,
-    color: 'gray',
+    color: "gray",
     marginTop: 8,
   },
   inputContainer: {
@@ -96,17 +101,17 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   inputBox: {
     borderWidth: 1,
-    borderColor: '#e0e0e0',
+    borderColor: "#e0e0e0",
     borderRadius: 12,
     padding: 12,
   },
   placeholder: {
-    color: 'gray',
+    color: "gray",
   },
-})
+});
 
-export default create
+export default create;
