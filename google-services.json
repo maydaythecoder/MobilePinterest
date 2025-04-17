@@ -1,0 +1,29 @@
+{
+    "project_info": {
+      "project_number": "690485159184",
+      "project_id": "pintrest-3f6d3",
+      "storage_bucket": "pintrest-3f6d3.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:690485159184:android:a5e99e015110330ea07195",
+          "android_client_info": {
+            "package_name": "com.kruncheeey.pinterest"
+          }
+        },
+        "oauth_client": [],
+        "api_key": [
+          {
+            "current_key": "AIzaSyC8J4euOTGFLzMyfnm8xGd9W4H0t6DLvuc"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": []
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }
