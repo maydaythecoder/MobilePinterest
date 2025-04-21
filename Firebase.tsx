@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { initializeAuth, type Persistence } from "firebase/auth";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import auth from "@react-native-firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -12,18 +11,4 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
-export const auth = initializeAuth(app, {
-  persistence: {
-    type: "LOCAL",
-    async getItem(key: string): Promise<string | null> {
-      const value = await AsyncStorage.getItem(key);
-      return value;
-    },
-    async setItem(key: string, value: string): Promise<void> {
-      await AsyncStorage.setItem(key, value);
-    },
-    async removeItem(key: string): Promise<void> {
-      await AsyncStorage.removeItem(key);
-    }
-  } as Persistence
-});
+export { auth };
