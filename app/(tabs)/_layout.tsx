@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Platform, StyleSheet } from "react-native";
 
 import { HapticTab } from "@/components/Default/HapticTab";
@@ -7,10 +7,16 @@ import { IconSymbol } from "@/components/ui/IconSymbol";
 import TabBarBackground from "@/components/ui/TabBarBackground";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
-
+import { auth } from "@/Firebase";
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const user = auth.currentUser;
+  useEffect(() => {
+    if (user) {
+      setIsLoggedIn(true);
+    }
+  }, [user]);
   return (
     <Tabs
       screenOptions={{
