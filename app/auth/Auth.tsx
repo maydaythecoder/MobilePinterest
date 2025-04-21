@@ -1,20 +1,13 @@
 import React, { useState } from 'react'
 import { View, Text, KeyboardAvoidingView, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator, Platform } from 'react-native'
-import { 
-  signInWithEmailAndPassword, 
-  createUserWithEmailAndPassword,
-  signOut,
-  GoogleAuthProvider,
-  signInWithCredential,
-  OAuthProvider
-} from 'firebase/auth'
+import { GoogleAuthProvider } from 'firebase/auth'
 import { auth } from '../../Firebase'
 import { GoogleSignin } from '@react-native-google-signin/google-signin'
 import { appleAuth } from '@invertase/react-native-apple-authentication'
 
 GoogleSignin.configure({
-  webClientId: process.env.GOOGLE_WEB_CLIENT_ID,
-  iosClientId: process.env.GOOGLE_IOS_CLIENT_ID,
+  webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
+  iosClientId: process.env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID,
   offlineAccess: true,
 })
 
@@ -43,9 +36,9 @@ const Auth = () => {
 
     try {
       if (isSignIn) {
-        await signInWithEmailAndPassword(auth, email, password)
+        await auth().signInWithEmailAndPassword(email, password)
       } else {
-        await createUserWithEmailAndPassword(auth, email, password)
+        await auth().createUserWithEmailAndPassword(email, password)
       }
     } catch (err: any) {
       setError(err.message)
@@ -63,8 +56,8 @@ const Auth = () => {
       const userInfo = await GoogleSignin.signIn()
       const { idToken } = await GoogleSignin.getTokens()
       
-      const googleCredential = GoogleAuthProvider.credential(idToken)
-      await signInWithCredential(auth, googleCredential)
+      const credential = auth.GoogleAuthProvider.credential(idToken)
+      await auth().signInWithCredential(credential)
     } catch (err: any) {
       setError(err.message)
     } finally {
@@ -89,12 +82,9 @@ const Auth = () => {
       }
 
       const { identityToken, nonce } = appleAuthRequestResponse
-      const appleCredential = new OAuthProvider('apple.com').credential({
-        idToken: identityToken,
-        rawNonce: nonce
-      })
+      const credential = auth.AppleAuthProvider.credential(identityToken, nonce)
       
-      await signInWithCredential(auth, appleCredential)
+      await auth().signInWithCredential(credential)
     } catch (err: any) {
       setError(err.message)
     } finally {

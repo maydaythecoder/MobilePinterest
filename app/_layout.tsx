@@ -7,8 +7,6 @@ import { useEffect, useState } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { User } from 'firebase/auth';
-import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '@/Firebase';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -30,12 +28,13 @@ export default function RootLayout() {
     return null;
   }
 
-  const [user, setUser] = useState<User | null>(null)
+  const [user, setUser] = useState<any>(null)
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = auth().onAuthStateChanged((user) => {
       setUser(user)
     })
+    return () => unsubscribe()
   }, [])
 
   if (user) {
@@ -48,6 +47,7 @@ export default function RootLayout() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
+      <Stack.Screen name="auth" options={{ headerShown: false }} />
       <StatusBar style="auto" />
     </ThemeProvider>
   );
