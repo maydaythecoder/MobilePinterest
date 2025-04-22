@@ -37,17 +37,24 @@ export default function RootLayout() {
     return () => unsubscribe()
   }, [])
 
-  if (user) {
-    return <Redirect href="/(tabs)" />
+  const Redirect = (user: any) => {
+    if (user) {
+      return         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+
+    } else {
+      return         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+
+    }
   }
+
+
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Redirect user={user} />
         <Stack.Screen name="+not-found" />
       </Stack>
-      <Stack.Screen name="auth" options={{ headerShown: false }} />
       <StatusBar style="auto" />
     </ThemeProvider>
   );
