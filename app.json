@@ -11,6 +11,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.kruncheeey.pinterest",
+      "googleServicesFile": "./GoogleService-Info.plist",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
@@ -20,7 +21,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.kruncheeey.pinterest"
+      "package": "com.kruncheeey.pinterest",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "bundler": "metro",
@@ -37,7 +39,10 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "@react-native-google-signin/google-signin",
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth"
     ],
     "experiments": {
       "typedRoutes": true

@@ -1,17 +1,11 @@
-import { initializeApp } from "firebase/app";
-import auth from "@react-native-firebase/auth";
-
-const firebaseConfig = {
-  apiKey: process.env.EXPO_PUBLIC_FIREBASE_WEB_API_KEY,
-  authDomain: process.env.EXPO_PUBLIC_FIREBASE_WEB_AUTH_DOMAIN,
-  projectId: process.env.EXPO_PUBLIC_FIREBASE_WEB_PROJECT_ID,
-  storageBucket: process.env.EXPO_PUBLIC_FIREBASE_WEB_STORAGE_BUCKET,
-  messagingSenderId: process.env.EXPO_PUBLIC_FIREBASE_WEB_MESSAGING_SENDER_ID,
-  appId: process.env.EXPO_PUBLIC_FIREBASE_WEB_APP_ID
-};
+import firebase from '@react-native-firebase/app';
+import auth from '@react-native-firebase/auth';
 
 // Initialize Firebase
-initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp({
+    // Your config will be automatically picked up from google-services.json and GoogleService-Info.plist
+  });
+}
 
-// Export the auth instance from @react-native-firebase/auth
 export { auth };
