@@ -4,7 +4,7 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Stack, Redirect } from "expo-router";
+import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
@@ -21,6 +21,7 @@ export default function RootLayout() {
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     if (loaded) {
@@ -28,31 +29,25 @@ export default function RootLayout() {
     }
   }, [loaded]);
 
-  if (!loaded) {
-    return null;
-  }
-
-  const [user, setUser] = useState<any>(null);
-
   useEffect(() => {
-    const unsubscribe = auth().onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user);
     });
     return () => unsubscribe();
   }, []);
 
-  const Redirect = (user: any) => {
-    if (user) {
-      return <Stack.Screen name="(tabs)" options={{ headerShown: false }} />;
-    } else {
-      return <Stack.Screen name="(auth)" options={{ headerShown: false }} />;
-    }
-  };
+  if (!loaded) {
+    return null;
+  }
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
-        <Redirect user={user} />
+        {user ? (
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        ) : (
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        )}
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />
