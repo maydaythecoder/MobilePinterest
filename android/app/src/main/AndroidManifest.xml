@@ -24,8 +24,8 @@
         <action android:name="android.intent.action.VIEW"/>
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
-        <data android:scheme="myapp"/>
-        <data android:scheme="com.kruncheeey.pinterest"/>
+        <data android:scheme="pinterest"/>
+        <data android:scheme="com.yourcompany.pinterest"/>
       </intent-filter>
     </activity>
   </application>

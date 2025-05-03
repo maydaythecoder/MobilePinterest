@@ -1,4 +1,4 @@
-package com.kruncheeey.pinterest
+package com.yourcompany.pinterest
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

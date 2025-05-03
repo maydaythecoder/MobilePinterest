@@ -1,4 +1,4 @@
-package com.kruncheeey.pinterest
+package com.yourcompany.pinterest
 
 import android.app.Application
 import android.content.res.Configuration

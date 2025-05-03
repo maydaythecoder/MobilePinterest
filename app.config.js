@@ -4,14 +4,8 @@ module.exports = {
     slug: "pinterest",
     version: "1.0.0",
     orientation: "portrait",
-    icon: "./assets/icon.png",
     userInterfaceStyle: "light",
     scheme: "pinterest",
-    splash: {
-      image: "./assets/splash.png",
-      resizeMode: "contain",
-      backgroundColor: "#ffffff"
-    },
     assetBundlePatterns: [
       "**/*"
     ],
@@ -21,10 +15,6 @@ module.exports = {
       googleServicesFile: "./GoogleService-Info.plist"
     },
     android: {
-      adaptiveIcon: {
-        foregroundImage: "./assets/adaptive-icon.png",
-        backgroundColor: "#ffffff"
-      },
       package: "com.yourcompany.pinterest",
       googleServicesFile: "./google-services.json"
     },
